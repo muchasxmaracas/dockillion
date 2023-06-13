@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function usage() {
+    echo "bin/$(basename $0) [start|stop|restart|build]"
+}
+
+function startService() {
+    docker-compose -f .docker/docker-compose.yml up --build -d
+}
+
+function stopService() {
+    docker-compose -f .docker/docker-compose.yml down
+}
+
+function restartService() {
+    docker-compose -f .docker/docker-compose.yml restart
+}
+
+function buildService() {
+    docker-compose -f .docker/docker-compose.yml build
+}
+
+# Controller
+case $1 in
+    start)    startService    ;;
+    stop)     stopService     ;;
+    restart)  restartService  ;;
+    build)    buildService    ;;
+    *)        usage ;;
+esac
+
+exit 0
+

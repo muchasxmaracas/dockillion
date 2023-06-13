@@ -1,0 +1,13 @@
+# Secrets
+.env.local
+
+# Service
+data/*
+
+# IDEs
+.idea/
+.fleet/
+
+# System files
+**/.DS_Store
+

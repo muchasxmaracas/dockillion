@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    platform: linux/amd64
+    build:
+      context: ./build
+      args:
+          BASTILLION_VERSION: ${BASTILLION_VERSION}
+          BASTILLION_FILENAME_VERSION: ${BASTILLION_FILENAME_VERSION}
+    env_file: .env.local
+    ports:
+      - "127.0.0.1:8888:8080"
+    volumes:
+      - "../data/keydb:/opt/bastillion/jetty/bastillion/WEB-INF/classes/keydb/"
+    restart: always
+    healthcheck:
+      test: curl -I -L http://localhost:8080/admin || exit 1
+      interval: 10s
+      timeout: 75s
+      retries: 8
+
