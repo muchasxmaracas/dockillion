@@ -19,7 +19,7 @@ fi
   # prepare public-private keypair if it doesn't exist
 if [ ! -f /opt/bastillion/jetty/bastillion/WEB-INF/classes/keydb/bastillion.pub ]; then
   PASSPHRASE=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c64)
-  ssh-keygen -t rsa -b 4096 -f /opt/bastillion/jetty/bastillion/WEB-INF/classes/keydb/bastillion -C basti.derprovider.at -P "$PASSPHRASE"
+  ssh-keygen -t rsa -b 4096 -f /opt/bastillion/jetty/bastillion/WEB-INF/classes/keydb/bastillion -C keybox -P "$PASSPHRASE"
 fi
 
 # change to jetty dir and start jetty
